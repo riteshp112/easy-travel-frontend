@@ -15,6 +15,7 @@ import AdbIcon from '@mui/icons-material/Adb';
 import mascot from '../assets/logo.png';
 import {useNavigate} from 'react-router-dom';
 import {useAuth} from '../modules/user-management/hooks/useAuth';
+import './navbar.css';
 
 function ResponsiveAppBar() {
   const pages = [];
@@ -126,9 +127,11 @@ function ResponsiveAppBar() {
           </Box>
           <Box sx={{flexGrow: 0, marginRight: -2}}>
             {!user?.name ? (
-              <div className="login" onClick={() => navigate('/login')}>
-                <button className="login-button">Login</button>
-              </div>
+              <button
+                className="login-button"
+                onClick={() => navigate('/login')}>
+                Login
+              </button>
             ) : (
               <>
                 <Tooltip title="Open settings">
@@ -155,7 +158,12 @@ function ResponsiveAppBar() {
                   open={Boolean(anchorElUser)}
                   onClose={handleCloseUserMenu}>
                   {settings.map(setting => (
-                    <MenuItem key={setting.label} onClick={setting.onPress}>
+                    <MenuItem
+                      key={setting.label}
+                      onClick={() => {
+                        handleCloseUserMenu();
+                        setting.onPress();
+                      }}>
                       <Typography sx={{textAlign: 'center'}}>
                         {setting.label}
                       </Typography>
