@@ -33,7 +33,10 @@ const useStyles = makeStyles(theme => {
 
 const Login = props => {
   const {navigation = {}} = props || {};
-  // const intl = useIntl();
+
+  const afterSucess = () => {
+    navigation.navigate('/itineraries');
+  };
   const {formValues, setFormValues, onLogin, loading} = useLogin();
   const {email, password} = formValues;
   const handleChange = e => {
@@ -99,7 +102,10 @@ const Login = props => {
           </Box>
           <Stack gap={1}>
             <Button
-              onClick={onLogin}
+              onClick={async props => {
+                await onLogin();
+                afterSucess && afterSucess();
+              }}
               disabled={isLoginActionDisabled}
               loading={loading}
               type="submit"
@@ -142,6 +148,7 @@ const Login = props => {
                   HttpAuth.access_token = access;
                   HttpAuth.refresh_token = refresh;
                   setAuth({user: user});
+                  afterSucess && afterSucess();
                 } catch (err) {
                   showError(err);
                 }

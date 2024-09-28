@@ -5,24 +5,30 @@ import {Direction} from '../components/map/Map';
 import HttpAuth from '../services/HttpAuthService';
 import Chatbot from '../modules/chatbot/chatbot';
 import {FaAnglesRight} from 'react-icons/fa6';
+import {Modal} from '@mui/material';
+import {LoadingScreen} from './LoadingScreen';
 
 const MainPage = () => {
   const [show, updateShow] = useState(true);
   const [leftIndex, updateLeftIndex] = useState(0);
   const [iteneries, updateItineraries] = useState([]);
   const [data, updateData] = useState({});
-
+  const [loading, updateLoading] = useState(true);
   const onIntenerySelect = async ({index, itnaryId}) => {
+    updateLoading(true);
     updateLeftIndex(index);
     const data = await HttpAuth.get(`/v1/itinerary/${itnaryId}`);
     updateData(data);
+    updateLoading(false);
   };
 
   const getIteneraries = async () => {
+    updateLoading(true);
     const {itineraries = []} = await HttpAuth.get('/v1/itinerary');
     const reversedIteneraries = itineraries.reverse();
     updateItineraries(reversedIteneraries);
     onIntenerySelect({index: 0, itnaryId: reversedIteneraries?.[0]?._id});
+    updateLoading(false);
   };
 
   useEffect(() => {
@@ -46,8 +52,11 @@ const MainPage = () => {
         onRefresh={getIteneraries}
       />
       <Itinary data={data} />
-      <Direction data={data} show={show}/>
+      <Direction data={data} show={show} />
       <Chatbot />
+      <Modal open={loading}>
+        <LoadingScreen />
+      </Modal>
       <div
         style={{
           color: 'white',

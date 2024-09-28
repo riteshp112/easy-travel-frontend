@@ -45,7 +45,7 @@ const useGetImage = ({location}) => {
       .catch(error => {
         showError(error);
       });
-  }, []);
+  }, [location]);
   return {loading, imageurl};
 };
 
@@ -86,7 +86,7 @@ const StatItem = ({icon: Icon, content}) => (
 
 const TopContainer = ({destination = {}}) => {
   const {loading, imageurl} = useGetImage({
-    location: destination?.destination_country,
+    location: destination?.destination_country || 'family trip',
   });
   const fromdate = moment(destination.start_date).format('YY-MMM-DD');
   const todate = moment(destination.end_date).format('YY-MMM-DD');
