@@ -11,7 +11,7 @@ const FirstPage = props => {
   return (
     <div className="firstpage-container">
       <div className="firstpage-navbar">
-        <h1 className="firstpage-logo-text">EXPLORE LIKE THE WORLD ID YOUR OYSTER</h1>
+        <h1 className="firstpage-logo-text">EXPLORE LIKE THE WORLD IS YOUR OYSTER</h1>
         <button
           className="firstpage-plan-button"
           onClick={() => {
