@@ -81,7 +81,7 @@ const StatItem = ({icon: Icon, content}) => (
 
 const TopContainer = ({destination = {}}) => {
   const {loading, imageurl} = useGetImage({
-    location: destination?.destination_country || 'family trip',
+    location: destination?.destination_cities?.join?.('+') || 'family+trip',
   });
   const fromdate = moment(destination.start_date).format('YY-MMM-DD');
   const todate = moment(destination.end_date).format('YY-MMM-DD');
@@ -213,6 +213,8 @@ const Itinary = ({data = {}}) => {
     <div
       id="itinary"
       style={{
+        display: 'flex',
+        flexDirection: 'column',
         flex: 3,
         overflowY: 'auto',
       }}>

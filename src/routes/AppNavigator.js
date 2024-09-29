@@ -105,9 +105,8 @@ export const AppNavigator = () => {
           style={{
             display: 'flex',
             flexDirection: 'column',
-            flex: 1,
-            height: '100vh',
             overflow: 'hidden',
+            height: '100vh',
           }}
           className="background">
           <ResponsiveAppBar />
