@@ -68,7 +68,7 @@ const MainPage = () => {
           alignItems: 'center',
           borderRadius: 100,
           left: 0,
-          bottom: 100,
+          bottom: 50,
           position: 'absolute',
           cursor: 'pointer',
           transition: 'all 0.3s ease',

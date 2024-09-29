@@ -1,6 +1,5 @@
 .firstpage-container {
   display: flex;
-  flex: 1;
   flex-direction: column;
   overflow: hidden;
   align-items: center;
@@ -32,23 +31,24 @@
 
 .firstpage-features {
   display: flex;
+  max-width: 80%;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   gap: 8px;
   margin-top: 16px;
-  border-radius: 400px;
-  flex-wrap: wrap;
   padding: 60px;
+  flex-wrap: wrap;
+  overflow-y: auto;
 }
 
 .firstpage-feature-box {
+  flex-direction: column;
   padding: 40px 36px 40px 36px;
-  gap: 4px;
   border-radius: 32px;
   opacity: 1;
   box-shadow: 0px 4px 20px 0px #00000025;
   background-color: #ffffff;
   width: 200px;
-  height: 200px;
+  height: 180px;
 }

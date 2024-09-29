@@ -14,11 +14,8 @@ code {
 
 .background {
   background-image: url('./assets/Homebackground.png');
-  height: 100%;
-  width: 100%;
   background-size: cover;
-  background-repeat: no-repeat;
-  position: relative;
+  resize: vertical;
 }
 
 .css-19r6kue-MuiContainer-root {

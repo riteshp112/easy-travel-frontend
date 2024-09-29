@@ -24,7 +24,7 @@ const FirstPage = props => {
           My Itineraries 🗒
         </button>
       </div>
-      <section className="firstpage-features">
+      <div className="firstpage-features">
         <div className="firstpage-feature-box">
           <h3>Plan & save with ease</h3>
           <p>
@@ -53,7 +53,7 @@ const FirstPage = props => {
             smooth trip.
           </p>
         </div>
-      </section>
+      </div>
     </div>
   );
 };
