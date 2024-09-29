@@ -28,7 +28,7 @@ export const ListMenu = ({
         flexDirection: 'column',
       }}>
       <div style={{padding: 10}}>
-        <Button title={'Start new Chat'} onClick={handleOpen} />
+        <Button title={'Plan new Trip'} onClick={handleOpen} />
         <Modal
           open={open}
           onClose={handleClose}
