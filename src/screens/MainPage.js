@@ -51,12 +51,6 @@ const MainPage = () => {
         onSelect={onIntenerySelect}
         onRefresh={getIteneraries}
       />
-      <Itinary data={data} />
-      <Direction data={data} show={show} />
-      <Chatbot />
-      <Modal open={loading}>
-        <LoadingScreen />
-      </Modal>
       <div
         style={{
           color: 'white',
@@ -67,18 +61,25 @@ const MainPage = () => {
           justifyContent: 'center',
           alignItems: 'center',
           borderRadius: 100,
-          left: 0,
-          bottom: 50,
-          position: 'absolute',
+          marginLeft: -15,
+          marginRight: -15,
+          marginTop: 20,
           cursor: 'pointer',
           transition: 'all 0.3s ease',
           transform: show ? '' : 'rotate(-180deg)',
+          zIndex: 1,
         }}
         onClick={() => {
           updateShow(prev => !prev);
         }}>
         <FaAnglesRight />
       </div>
+      <Itinary data={data} />
+      <Direction data={data} show={show} />
+      <Chatbot />
+      <Modal open={loading}>
+        <LoadingScreen />
+      </Modal>
     </div>
   );
 };
