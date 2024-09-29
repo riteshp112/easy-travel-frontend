@@ -13,23 +13,18 @@ import moment from 'moment';
 import Itinarycard from './Itinarycard';
 import './itinary.css';
 import './fonts-style.css';
-import {showError, successMessage} from '../../hooks/showError';
+import {showError} from '../../hooks/showError';
 import HttpAuth from '../../services/HttpAuthService';
 import {FaDownload} from 'react-icons/fa6';
-import jsPDF from 'jspdf';
 
 const generatePDF = serverData => {
-  const doc = new jsPDF();
-
-  doc.setFontSize(12);
-  doc.text('Server Data:', 10, 10);
-
-  if (serverData) {
-    doc.text(JSON.stringify(serverData), 10, 20);
-  }
-
-  doc.save('download.pdf');
-  successMessage('PDF generated successfully');
+  var content = document.getElementById('itinary');
+  var pri = document.getElementById('ifmcontentstoprint').contentWindow;
+  pri.document.open();
+  pri.document.write(content.innerHTML);
+  pri.document.close();
+  pri.focus();
+  pri.print();
 };
 
 const useGetImage = ({location}) => {
@@ -216,6 +211,7 @@ const Itinary = ({data = {}}) => {
   const {destination = {}, itinerary = []} = data;
   return (
     <div
+      id="itinary"
       style={{
         flex: 3,
         overflowY: 'auto',
@@ -224,6 +220,9 @@ const Itinary = ({data = {}}) => {
       <DescriptionCard destination={destination} itinerary={itinerary} />
       <HR />
       <Itinarycard itinerary={itinerary} />
+      <iframe
+        id="ifmcontentstoprint"
+        style={{height: 0, width: 0, position: 'absolute'}}></iframe>
     </div>
   );
 };
