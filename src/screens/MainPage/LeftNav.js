@@ -52,6 +52,7 @@ export const ListMenu = ({
               maxWidth: 150,
               padding: 10,
               height: 48,
+              margin: 4,
             }}
             value={selected}
             label="Itinerary"
@@ -74,6 +75,7 @@ export const ListMenu = ({
               maxWidth: 100,
               padding: 10,
               height: 48,
+              margin: 4,
             }}
             value={view}
             label="View"
