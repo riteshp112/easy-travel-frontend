@@ -32,26 +32,17 @@ export const ListMenu = ({
         overflow: 'hidden',
         alignItems: 'center',
         justifyContent: 'space-between',
-        height: isMobile ? 48 : void 0,
         padding: 10,
         flexWrap: isMobile ? 'wrap' : void 0,
       }}>
-      <div
-        style={{
-          padding:10,
-          display: 'flex',
-          flex: 1,
-          justifyContent: 'center',
-        }}>
-        <Button title={'Plan new Trip'} onClick={handleOpen} />
-        <Modal
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description">
-          <PlanTripForm handleClose={handleClose} newChat />
-        </Modal>
-      </div>
+      <Button title={'Plan new Trip'} onClick={handleOpen} />
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description">
+        <PlanTripForm handleClose={handleClose} newChat />
+      </Modal>
       {isMobile ? (
         <>
           <Select
