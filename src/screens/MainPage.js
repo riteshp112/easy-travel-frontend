@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {ListMenu} from './MainPage/LeftNav';
 import Itinary from './MainPage/Itinary';
 import {Direction} from '../components/map/Map';
@@ -7,6 +7,7 @@ import Chatbot from '../modules/chatbot/chatbot';
 import {FaAnglesRight} from 'react-icons/fa6';
 import {Modal} from '@mui/material';
 import {LoadingScreen} from './LoadingScreen';
+import {ScreenSizeContext} from '../context/ScreenSizeProvider';
 
 const MainPage = () => {
   const [show, updateShow] = useState(true);
@@ -35,14 +36,17 @@ const MainPage = () => {
     getIteneraries();
   }, []);
 
+  const {isMobile} = useContext(ScreenSizeContext);
+  const [view, setView] = React.useState('list');
+
   return (
     <div
       style={{
         flex: 1,
         display: 'flex',
-        flexDirection: 'row',
+        flexDirection: isMobile ? 'column' : 'row',
         backgroundColor: '#ffffff',
-        overflow: 'hidden',
+        overflow: isMobile ? 'auto' : 'hidden',
       }}>
       <ListMenu
         show={show}
@@ -50,8 +54,10 @@ const MainPage = () => {
         userItinaries={iteneries}
         onSelect={onIntenerySelect}
         onRefresh={getIteneraries}
+        view={view}
+        setView={setView}
       />
-      <div
+      {!isMobile && <div
         style={{
           color: 'white',
           height: 30,
@@ -73,9 +79,9 @@ const MainPage = () => {
           updateShow(prev => !prev);
         }}>
         <FaAnglesRight />
-      </div>
-      <Itinary data={data} />
-      <Direction data={data} show={show} />
+      </div>}
+      {(!isMobile || view == 'list') && <Itinary data={data} />}
+      {(!isMobile || view == 'map') && <Direction data={data} show={show} />}
       <Chatbot />
       <Modal open={loading}>
         <LoadingScreen />
