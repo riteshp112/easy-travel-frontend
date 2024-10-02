@@ -34,6 +34,7 @@ export const ListMenu = ({
         justifyContent: 'space-between',
         height: isMobile ? 48 : void 0,
         padding: 10,
+        flexWrap: isMobile ? 'wrap' : void 0,
       }}>
       <div
         style={{
