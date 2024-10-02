@@ -37,7 +37,7 @@ export const ListMenu = ({
       }}>
       <div
         style={{
-          padding:10
+          padding:10,
           display: 'flex',
           flex: 1,
           justifyContent: 'center',
